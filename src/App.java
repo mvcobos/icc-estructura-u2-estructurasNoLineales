@@ -4,13 +4,17 @@ import Main.Ejercicio_03_listLevels.ListLevels;
 import Main.Materia.Controllers.ArbolAVL;
 import Main.Materia.Controllers.ArbolBinario;
 import Main.Materia.Controllers.ArbolRecorrido;
+import Main.Materia.Ejercicio_01_insert.Insert;
+import Main.Materia.Ejercicio_03_listLeves.ListLeves;
 import Main.Materia.Models.Node;
 
 public class App {
     public static void main(String[] args) throws Exception {
        //runArbolBinario();
        //runEjercicio3();
-       runArbolAVL();
+       //runArbolAVL();
+       deber();
+
     }
 
     public static void runArbolBinario (){
@@ -67,5 +71,36 @@ public class App {
 
         arbolAVL.printTree();
         
+    }
+
+    public static void deber(){
+        ArbolBinario arbolBinario = new ArbolBinario();
+        ArbolBinario arbol2 = new ArbolBinario();
+        Insert insert = new Insert();
+        ListLeves listado = new ListLeves();
+
+        int [] valores = {5, 3, 7, 2, 4, 6, 8};
+        int [] values = {4, 2, 7, 1, 3, 6, 9};
+
+        for (int i = 0; i < valores.length; i++){
+            arbolBinario.insert(valores[i]);
+            arbol2.insert(values[i]);
+        }
+
+        List<List<Node>> lista = insert.listLeves(arbolBinario.getRoot());
+        List<List<Node>> lista2 = listado.listLeves(arbol2.getRoot());
+        //IMPRIMIR LA LISTA DE LISTAS RESULTANTE
+        System.out.println("Ejercicio_01_insert:");
+        insert.printLeves(lista);
+
+        System.out.println("Ejercicio_02_invert:");
+
+        System.out.println("Ejercicio_03_listLeves:");
+        listado.printlistLevels(lista2);
+
+        System.out.println("Ejercicio_04_depth:");
+
+
+
     }
 }
