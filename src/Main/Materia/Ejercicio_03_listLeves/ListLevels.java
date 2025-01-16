@@ -8,9 +8,9 @@ import java.util.Queue;
 
 import Main.Materia.Models.Node;
 
-public class ListLeves {
+public class ListLevels {
 
-    public List<List<Node>> listLeves(Node root){
+    public List<List<Node>> listLevels(Node root){
         if (root == null) {
             return new ArrayList<>(); 
         }

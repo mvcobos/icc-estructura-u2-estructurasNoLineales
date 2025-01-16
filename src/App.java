@@ -1,11 +1,14 @@
 import java.util.List;
+import java.util.Scanner;
 
-import Main.Ejercicio_03_listLevels.ListLevels;
+import Main.Materia.Ejercicio_03_listLeves.ListLevels;
+import Main.Materia.Ejercicio_04_depth.Depth;
+import Main.Ejercicio_03_listLevels.ListLevelsEJ1;
 import Main.Materia.Controllers.ArbolAVL;
 import Main.Materia.Controllers.ArbolBinario;
 import Main.Materia.Controllers.ArbolRecorrido;
-import Main.Materia.Ejercicio_01_insert.Insert;
-import Main.Materia.Ejercicio_03_listLeves.ListLeves;
+import Main.Materia.Ejercicio_01_insert.InsertBSTTest;
+import Main.Materia.Ejercicio_02_invert.InvertBinaryTree;
 import Main.Materia.Models.Node;
 
 public class App {
@@ -45,7 +48,7 @@ public class App {
 
     public static void runEjercicio3(){
         ArbolBinario arbolBinario = new ArbolBinario();
-        ListLevels levels = new ListLevels();
+        ListLevelsEJ1 levels = new ListLevelsEJ1();
 
         int [] valores = {4, 2, 1, 3, 7, 6, 9};
 
@@ -74,33 +77,41 @@ public class App {
     }
 
     public static void deber(){
-        ArbolBinario arbolBinario = new ArbolBinario();
-        ArbolBinario arbol2 = new ArbolBinario();
-        Insert insert = new Insert();
-        ListLeves listado = new ListLeves();
+        Scanner scanner = new Scanner(System.in);
 
-        int [] valores = {5, 3, 7, 2, 4, 6, 8};
-        int [] values = {4, 2, 7, 1, 3, 6, 9};
-
-        for (int i = 0; i < valores.length; i++){
-            arbolBinario.insert(valores[i]);
-            arbol2.insert(values[i]);
+        InsertBSTTest ej1 = new InsertBSTTest();
+        InvertBinaryTree ej2 = new InvertBinaryTree();
+        ListLevels ej3 = new ListLevels();
+        Depth ej4 = new Depth();
+        
+        int tamanio = ej1.leerEnteroValido("Ingrese la cantidad de numeros del arbol", false);
+        int [] valores = new int[tamanio];
+        for (int i = 0; i < tamanio; i++){
+            valores[i] = ej1.leerEnteroValido("Ingrese el valor #" + i, true);
         }
 
-        List<List<Node>> lista = insert.listLeves(arbolBinario.getRoot());
-        List<List<Node>> lista2 = listado.listLeves(arbol2.getRoot());
-        //IMPRIMIR LA LISTA DE LISTAS RESULTANTE
+
         System.out.println("Ejercicio_01_insert:");
-        insert.printLeves(lista);
+        for (int i = 0; i < valores.length; i++){
+            ej1.insert(valores[i]);
+        }
+        List<List<Node>> lista1 = ej3.listLevels(ej1.getRoot());
+        ej3.printlistLevels(lista1);
+
 
         System.out.println("Ejercicio_02_invert:");
+        Node arbolInvertido = ej2.invertTree(ej1.getRoot()); //metodo de invertir del ejercicio 2
+        List<List<Node>> lista2 = ej3.listLevels(arbolInvertido); //convertirlo a lista para reusar la impresion del primer ejercicio
+        ej3.printlistLevels(lista2); //impresion del primer ejercicio
 
+        
         System.out.println("Ejercicio_03_listLeves:");
-        listado.printlistLevels(lista2);
+        ej3.printlistLevels(lista1);
 
         System.out.println("Ejercicio_04_depth:");
+        int profundidad = ej4.maxDepth(ej1.getRoot());
+        System.out.println("La profundidad del arbol es: " + profundidad);
 
-
-
+        scanner.close();
     }
 }
