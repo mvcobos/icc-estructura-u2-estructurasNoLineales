@@ -1,22 +1,23 @@
 import java.util.List;
 import java.util.Scanner;
 
+import Main.Materia.Ejercicio_01_insert.InsertBSTTest;
+import Main.Materia.Ejercicio_02_invert.InvertBinaryTree;
 import Main.Materia.Ejercicio_03_listLeves.ListLevels;
 import Main.Materia.Ejercicio_04_depth.Depth;
 import Main.Ejercicio_03_listLevels.ListLevelsEJ1;
-import Main.Materia.Controllers.ArbolAVL;
-import Main.Materia.Controllers.ArbolBinario;
-import Main.Materia.Controllers.ArbolRecorrido;
-import Main.Materia.Ejercicio_01_insert.InsertBSTTest;
-import Main.Materia.Ejercicio_02_invert.InvertBinaryTree;
+import Main.Materia.Controllers.*;
+
 import Main.Materia.Models.Node;
+import Main.Materia.Models.NodeG;
 
 public class App {
     public static void main(String[] args) throws Exception {
        //runArbolBinario();
        //runEjercicio3();
        //runArbolAVL();
-       deber();
+       //paEstructurasNoLinealesArboles();
+       runGraph();
 
     }
 
@@ -76,7 +77,7 @@ public class App {
         
     }
 
-    public static void deber(){
+    public static void paEstructurasNoLinealesArboles(){
         Scanner scanner = new Scanner(System.in);
 
         InsertBSTTest ej1 = new InsertBSTTest();
@@ -113,5 +114,24 @@ public class App {
         System.out.println("La profundidad del arbol es: " + profundidad);
 
         scanner.close();
+    }
+
+    public static void runGraph(){
+        Graph grafo = new Graph();
+        NodeG cinco = grafo.addNode(5);
+        NodeG siete = grafo.addNode(7);
+        NodeG nueve = grafo.addNode(9);
+        NodeG once = grafo.addNode(11);
+        NodeG tres = grafo.addNode(3);
+
+        grafo.addEdge(cinco, siete);
+        grafo.addEdge(cinco, tres);
+        grafo.addEdge(siete, nueve);
+        grafo.addEdge(nueve, cinco);
+        grafo.addEdge(nueve, tres);
+        grafo.addEdge(tres, once);
+
+        grafo.printGraph();
+
     }
 }
