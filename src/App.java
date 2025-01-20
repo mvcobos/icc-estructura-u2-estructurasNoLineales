@@ -13,11 +13,12 @@ import Main.Materia.Models.NodeG;
 
 public class App {
     public static void main(String[] args) throws Exception {
-       //runArbolBinario();
+        //runArbolBinario();
        //runEjercicio3();
        //runArbolAVL();
        //paEstructurasNoLinealesArboles();
-       runGraph();
+       //runGraph();
+       runGrafoEjercicio();
 
     }
 
@@ -118,20 +119,92 @@ public class App {
 
     public static void runGraph(){
         Graph grafo = new Graph();
+        
+        NodeG cero = grafo.addNode(0);
+        NodeG uno = grafo.addNode(1);
+        NodeG dos = grafo.addNode(2);
+        NodeG tres = grafo.addNode(3);
+        NodeG cuatro = grafo.addNode(4);
         NodeG cinco = grafo.addNode(5);
-        NodeG siete = grafo.addNode(7);
+
+        /*NodeG siete = grafo.addNode(7);
         NodeG nueve = grafo.addNode(9);
         NodeG once = grafo.addNode(11);
-        NodeG tres = grafo.addNode(3);
+        
 
         grafo.addEdge(cinco, siete);
         grafo.addEdge(cinco, tres);
         grafo.addEdge(siete, nueve);
         grafo.addEdge(nueve, cinco);
         grafo.addEdge(nueve, tres);
-        grafo.addEdge(tres, once);
+        grafo.addEdge(tres, once);*/
+
+        /*grafo.addEdgeUni(cero, tres);
+        grafo.addEdgeUni(cero, cinco);
+        grafo.addEdgeUni(tres, dos);
+        grafo.addEdgeUni(tres, cuatro);
+        grafo.addEdgeUni(cuatro, uno);
+        grafo.addEdgeUni(dos, uno);
+        grafo.addEdgeUni(uno, cero);*/
+
+        grafo.addEdgeUni(cero, tres);
+        grafo.addEdgeUni(cero, cinco);
+        grafo.addEdgeUni(tres, dos);
+        grafo.addEdgeUni(tres, cuatro);
+        grafo.addEdgeUni(cuatro, uno);
+        grafo.addEdgeUni(dos, uno);
+        grafo.addEdgeUni(uno, cero);
 
         grafo.printGraph();
 
+        System.out.println("\nNo dirigido: ");
+        grafo.getDFS(cero);
+        grafo.getBFS(cero);
+
+
+        System.out.println("\nDirigido: ");
+        grafo.addEdge(cero, tres);
+        grafo.addEdge(cero, cinco);
+        grafo.addEdge(tres, dos);
+        grafo.addEdge(tres, cuatro);
+        grafo.addEdge(cuatro, uno);
+        grafo.addEdge(dos, uno);
+        grafo.addEdge(uno, cero);
+        grafo.getDFS(cero);
+        grafo.getBFS(cero);
     }
+
+    public static void runGrafoEjercicio(){
+        Graph grafo = new Graph();
+        
+        NodeG cero = grafo.addNode(0);
+        NodeG uno = grafo.addNode(1);
+        NodeG dos = grafo.addNode(2);
+        NodeG tres = grafo.addNode(3);
+        NodeG cuatro = grafo.addNode(4);
+        NodeG cinco = grafo.addNode(5);
+        NodeG siete = grafo.addNode(7);
+        NodeG ocho = grafo.addNode(8);
+        NodeG nueve = grafo.addNode(9);
+
+
+        System.out.println("\nDirigido: ");
+        grafo.addEdge(cero, uno);
+        grafo.addEdge(cero, tres);
+        grafo.addEdge(cero, cinco);
+        grafo.addEdge(uno, dos);
+        grafo.addEdge(uno, cuatro);
+        grafo.addEdge(uno, ocho);
+        grafo.addEdge(dos, tres);
+        grafo.addEdge(tres, cuatro);
+        grafo.addEdge(tres, siete);
+        grafo.addEdge(tres, nueve);
+        grafo.addEdge(cuatro, ocho);
+        grafo.addEdge(siete, ocho);
+
+        grafo.printGraph();
+
+        grafo.getDFS(cero, siete);
+    }
+    
 }
